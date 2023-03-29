@@ -29,16 +29,13 @@ public class Homework {
         // task 5
         System.out.println("---Task 5---");
         System.out.println(Arrays.toString(createArray(10, 9)));
-
-//        int[][] array = new int[4][4]; // [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, x], [0, 0, 0, 1]]
-//        int x = array[2][3];
     }
 
     // ---Task 1---
     private static boolean isSumBetween10And20(int a, int b) {
         // проверить, что сумма a и b лежит между 10 и 20
         int res = a + b;
-        if (res >= 10 & res <= 20) {
+        if (res >= 10 && res <= 20) {
             return true;
         }
         return false;
@@ -66,7 +63,7 @@ public class Homework {
     private static boolean isLeapYear(int year) {
         // проверить, является ли год високосным. если да - return true
         // год является високосным, если он делится на 4, но не делится на 100, но делится на 400
-        if ((year % 4 == 0 & year % 100 != 0) | year % 400 == 0) {
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
             return true;
         }
         return false;
