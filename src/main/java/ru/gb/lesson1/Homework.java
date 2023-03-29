@@ -1,25 +1,40 @@
 package ru.gb.lesson1;
 
+import  java.util.Arrays;
+
 public class Homework {
 
     public static void main(String[] args) {
+        // task 1
+        System.out.println("---Task 1---");
         System.out.println(isSumBetween10And20(5, 15)); // true
         System.out.println(isSumBetween10And20(7, 15)); // false
         System.out.println(isSumBetween10And20(1, 8)); // false
 
-//        System.out.println(isPositive(5)); // true
-//        System.out.println(isPositive(-3)); // false
-//
-//        printString("abcd", 5); // abcdabcdabcdabcdabcd
-//
+        // task 2
+        System.out.println("---Task 2---");
+        System.out.println(isPositive(5)); // true
+        System.out.println(isPositive(-3)); // false
+
+        // task 3
+        System.out.println("---Task 3---");
+        printString("abcd", 5); // abcdabcdabcdabcdabcd
+
+        // task 4
+        System.out.println("---Task 4---");
+        System.out.println(isLeapYear(1997));
+        System.out.println(isLeapYear(2000));
+        System.out.println(isLeapYear(1800));
+
+        // task 5
+        System.out.println("---Task 5---");
+        System.out.println(Arrays.toString(createArray(10, 9)));
+
 //        int[][] array = new int[4][4]; // [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, x], [0, 0, 0, 1]]
 //        int x = array[2][3];
     }
 
-    /**
-     * 1. Написать метод, принимающий на вход два целых числа и проверяющий,
-     * что их сумма лежит в пределах от 10 до 20 (включительно), если да – вернуть true, в противном случае – false.
-     */
+    // ---Task 1---
     private static boolean isSumBetween10And20(int a, int b) {
         // проверить, что сумма a и b лежит между 10 и 20
         int res = a + b;
@@ -29,24 +44,42 @@ public class Homework {
         return false;
     }
 
+    // ---Task 2---
     private static boolean isPositive(int x) {
         // проверить, что х положительное
+        if(x > 0) {
+            return  true;
+        }
         return false;
     }
 
+    // ---Task 3---
     private static void printString(String source, int repeat) {
         // напечатать строку source repeat раз
+        for (int i = 0; i < repeat; i++) {
+            System.out.print(source);
+        }
+        System.out.println();
     }
 
+    // ---Task 4---
     private static boolean isLeapYear(int year) {
         // проверить, является ли год високосным. если да - return true
         // год является високосным, если он делится на 4, но не делится на 100, но делится на 400
+        if ((year % 4 == 0 & year % 100 != 0) | year % 400 == 0) {
+            return true;
+        }
         return false;
     }
 
+    // ---Task 5---
     private static int[] createArray(int len, int initialValue) {
         // должен вернуть массив длины len, каждое значение которого равно initialValue
-        return null;
+        int[] arr = new int[len];
+        for (int i = 0; i < len; i++) {
+            arr[i] = initialValue;
+        }
+        return arr;
     }
 
     /**
