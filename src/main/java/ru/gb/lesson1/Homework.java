@@ -1,6 +1,7 @@
 package ru.gb.lesson1;
 
-import  java.util.Arrays;
+import java.util.Arrays;
+import java.util.Random;
 
 public class Homework {
 
@@ -29,11 +30,30 @@ public class Homework {
         // task 5
         System.out.println("---Task 5---");
         System.out.println(Arrays.toString(createArray(10, 9)));
+
+        // task 6
+        System.out.println("---Task 6---");
+        int[] array1 = createNumArray(10, 0, 1);
+        System.out.println(Arrays.toString(array1));
+        swappingElements(array1, 1, 0);
+
+        // task 7
+        System.out.println("---Task 7---");
+        int[] array2 = createNumArray(12, 1, 11);
+        System.out.println(Arrays.toString(array2));
+        multiplicationElements(array2, 6, 2);
+
+        // task 8
+        System.out.println("---Task 8---");
+        int[][] matrix1 = new int[10][10];
+        changeDiagonals(matrix1);        
     }
 
-    // ---Task 1---
+    /**
+     * ---Task 1---
+     * Проверить, что сумма a и b лежит между 10 и 20.
+     */
     private static boolean isSumBetween10And20(int a, int b) {
-        // проверить, что сумма a и b лежит между 10 и 20
         int res = a + b;
         if (res >= 10 && res <= 20) {
             return true;
@@ -41,54 +61,115 @@ public class Homework {
         return false;
     }
 
-    // ---Task 2---
+    /**
+     * ---Task 2---
+     * Проверить, что х положительное.
+     */
     private static boolean isPositive(int x) {
-        // проверить, что х положительное
         if(x > 0) {
             return  true;
         }
         return false;
     }
 
-    // ---Task 3---
+    /**
+     * ---Task 3---
+     * Напечатать строку source repeat раз.
+     */
     private static void printString(String source, int repeat) {
-        // напечатать строку source repeat раз
         for (int i = 0; i < repeat; i++) {
             System.out.print(source);
         }
         System.out.println();
     }
 
-    // ---Task 4---
+    /**
+     * ---Task 4---
+     * Проверить, является ли год високосным. если да - return true.
+     * Год является високосным, если он делится на 4, но не делится на 100, но делится на 400.
+     */
     private static boolean isLeapYear(int year) {
-        // проверить, является ли год високосным. если да - return true
-        // год является високосным, если он делится на 4, но не делится на 100, но делится на 400
         if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
             return true;
         }
         return false;
     }
 
-    // ---Task 5---
+    /**
+     *  ---Task 5---
+     * Нужно вернуть массив длины len, каждое значение которого равно initialValue.
+     */ 
     private static int[] createArray(int len, int initialValue) {
-        // должен вернуть массив длины len, каждое значение которого равно initialValue
-        int[] arr = new int[len];
+        int[] array = new int[len];
         for (int i = 0; i < len; i++) {
-            arr[i] = initialValue;
+            array[i] = initialValue;
         }
-        return arr;
+        return array;
     }
 
     /**
-     * 1. Задать целочисленный массив, состоящий из элементов 0 и 1.
-     * Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ]. С помощью цикла и условия заменить 0 на 1, 1 на 0;
-     *
-     * 2. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ] пройти по нему циклом, и числа меньшие 6 умножить на 2;
-     *
-     * 3. Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое),
-     * и с помощью цикла(-ов) заполнить его диагональные элементы единицами (можно только одну из диагоналей, если обе сложно).
-     * Определить элементы одной из диагоналей можно по следующему принципу: индексы таких элементов равны, то есть [0][0], [1][1], [2][2], …, [n][n];
-     * * Также заполнить элементы побочной диагонали
+     * ---Task 6---
+     * Задать целочисленный массив, состоящий из элементов 0 и 1.
+     * Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ]. С помощью цикла и условия заменить 0 на 1, 1 на 0.
      */
+    public static int[] createNumArray(int num, int start, int end) {
+        Random rnd = new Random();
+        int[] array = new int[num];
+        if(start == 0) {
+            for (int i = 0; i < array.length; i++) {
+                array[i] = rnd.nextInt(end + 1);
+            }
+        }
+        else {
+            end = end - start;
+            for (int i = 0; i < array.length; i++) {
+                array[i] =  rnd.nextInt(end + 1) + start;
+            }
+        }
+        return array;
+    }
 
+    public static void swappingElements(int[] array, int elm1, int elm2) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == elm1) {
+                array[i] = elm2;
+            }
+            else if (array[i] == elm2) {
+                array[i] = elm1;
+            }
+        }
+        System.out.println(Arrays.toString(array));
+    }
+
+     /* 
+     * ---Task 7---
+     * Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ].
+     * Пройти по нему циклом, и числа меньшие 6 умножить на 2.
+     */
+    public static void multiplicationElements(int[] array, int lessThen, int multiplyBy) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < lessThen) {
+                array[i] *= multiplyBy; 
+            }
+        }
+        System.out.println(Arrays.toString(array));
+    }
+
+     /**
+     * ---Task 8---
+     * Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое),
+     * и с помощью цикла(-ов) заполнить его диагональные элементы единицами.
+     */
+    public static void changeDiagonals(int[][] inputMatrix) {
+        int mLen = inputMatrix.length;
+        for (int i = 0; i < mLen; i++) {
+            for (int j = 0; j < mLen; j++) {
+                if (j == i || j == mLen - i - 1)
+                    inputMatrix[i][j] = 1;
+            }
+        }
+        for (int i = 0; i < mLen; i++) {
+            System.out.println(Arrays.toString(inputMatrix[i]));
+        }
+    }
 }
